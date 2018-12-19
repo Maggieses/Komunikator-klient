@@ -104,7 +104,7 @@ Podaj komendę:
 			to=input("Podaj odbiorcę: ")
 			self.send_via(to,txt,0)
 		elif(cmd=="recv"):
-			msgs=json.loads(self.recv_from(0))
+			msgs=json.loads(self.recv_from(0).decode('ascii'))
 			for msg in msgs:
 				print(msg["from"],msg["msg"])
 		elif(cmd=="register"):
@@ -120,5 +120,5 @@ m=hashlib.md5()
 m.update(b'123')
 k=Komunikator("ja",m.hexdigest() )
 
-k.add_server("192.168.100.182","20000")
+k.add_server("127.0.0.1","20000")
 k.menu()
